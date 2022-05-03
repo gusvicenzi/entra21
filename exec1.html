@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma tudo</title>
+</head>
+<body>
+    <fieldset style="width: 10rem; border-radius: 10px; border-color: blueviolet; background: radial-gradient(rgb(255, 179, 0), rgb(255, 115, 0));">
+        <legend style="color: blueviolet; font-weight: bold;">Soma tudo</legend>
+        <label for="numero" style="color: blueviolet;">Digite um número:</label>
+        <br>
+        <input type="number" name="numero" id="numero" size="5">
+        <br><br>
+        <button style="border-radius: 10px; background-color: blueviolet;" onclick="somaTudoFor(numero.value)">Calcular com for</button>
+        <button style="border-radius: 10px; background-color: blueviolet;" onclick="somaTudoWhile(numero.value)">Calcular com while</button>
+        <hr style="color: blueviolet;">
+        <p style="color: blueviolet" id="resultado"></p>
+    </fieldset>
+    <script>
+        function somaTudoFor(num){
+            let soma = 0;
+            for (let i = parseInt(num); i > 0; i--) {
+                soma += i
+            }
+            document.getElementById("resultado").innerHTML = `A soma dos antecessores é: ${soma}`
+        }
+
+        function somaTudoWhile(num) {
+            let soma = 0;          
+            let z = parseInt(num)
+            while (z>0) {
+                soma += z
+                z--
+            }
+            document.getElementById("resultado").innerHTML = `A soma dos antecessores é: ${soma}`
+        }
+    </script>
+</body>
+</html>
