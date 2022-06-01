@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quitanda</title>
+
+    <style>
+        .container {
+            width: 300px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button,
+        label {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label for="descricao">Descrição</label>
+        <input type="text" name="descricao" id="descricao" placeholder="Informe descrição do produto" autofocus />
+
+        <label for="preco">Preço</label>
+        <input type="number" name="preco" id="preco" placeholder="Informe preço do produto" />
+
+        <label for="estoque">Estoque</label>
+        <input type="number" name="estoque" id="estoque" placeholder="Informe estoque do produto" />
+
+        <div>
+            <button onclick="add(descricao, preco, estoque)">Salvar</button>
+
+            <button onclick="reset(descricao, preco, estoque)">Limpar</button>
+
+            <button onclick="insertTable(produtos)">Mostrar dados</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                </tr>
+            </thead>
+            <tbody id="dados">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let obj1 = {
+            descricao: 'Milho',
+            preco: 5.5,
+            estoque: 12,
+        }
+
+        let obj2 = {
+            descricao: 'Açucar',
+            preco: 1.99,
+            estoque: 2,
+        }
+
+        let produtos = [obj1, obj2]
+
+        function add(descricao, preco, estoque) {
+            if (!descricao.value) {
+                alert("Digite uma descrição")
+                descricao.focus()
+                return
+            } else if (!preco.value) {
+                alert("Digite um preço")
+                preco.focus()
+                return
+            } else if (!estoque.value) {
+                alert("Digite um estoque")
+                estoque.focus()
+                return
+            }
+
+            let obj = {
+                descricao: descricao.value.charAt(0).toUpperCase() + descricao.value.slice(1).toLowerCase(),
+                preco: preco.value,
+                estoque: estoque.value,
+            }
+
+            // limpar inputs
+            reset(descricao, preco, estoque)
+
+            // colocar objeto no array produtos
+            produtos.push(obj)
+            console.log(produtos);
+
+            // insere tabela
+            // insertTable(produtos)
+        }
+
+        function reset(descricao, preco, estoque) {
+            descricao.value = ""
+            preco.value = null
+            estoque.value = null
+        }
+
+        function insertTable(arrayProdutos) {
+            document.getElementById("dados").innerHTML = ""
+            for (produto of arrayProdutos) {
+                document.getElementById("dados").innerHTML += `<tr>
+                        <td>${produto.descricao}</td>
+                        <td>${produto.preco}</td>
+                        <td>${produto.estoque}</td>
+                    </tr>`
+            }
+        }
+    </script>
+</body>
+
+</html>

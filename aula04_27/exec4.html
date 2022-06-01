@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Calcular aumento</legend>
+        <label for="number">Nota 1</label>
+        <input type="number" name="number" id="number" required>
+        <br>
+        <br>
+        <button onclick=oddOrEven()>Enviar dados</button>
+        <h1 id="result"></h1>
+    </fieldset>
+    <script>
+        function oddOrEven(){
+            let numero = parseInt(document.getElementById("number").value)
+            let situacao = "par"
+
+            if (numero%2){
+                situacao = "ímpar"
+            }
+            document.getElementById("result").innerHTML = `O número ${numero} é ${situacao}`
+        }
+    </script>
+</body>
+</html>

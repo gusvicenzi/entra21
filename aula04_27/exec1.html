@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Calcular idade</legend>
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" autofocus autocomplete="name" required>
+        <br>
+        <label for="yearBirth">Ano de nascimento</label>
+        <input type="number" name="yearBirth" id="yearBirth" min="1900" step="1" required>
+        <br>
+        <label for="monthBirth">Mês de nascimento</label>
+        <input type="number" name="monthBirth" id="monthBirth" required>
+        <br>
+        <label for="dayBirth">Dia de nascimento</label>
+        <input type="number" name="dayBirth" id="dayBirth" required>
+        <br>
+        <button onclick=calcAge()>Enviar dados</button>
+        <h1 id="result"></h1>
+    </fieldset>
+    <script>
+        function calcAge(){
+            let nome = document.getElementById("name").value
+            let anoNascimento = document.getElementById("yearBirth").value
+            let mesNascimento = document.getElementById("monthBirth").value
+            let diaNascimento = document.getElementById("dayBirth").value
+            
+            let date = new Date()
+            let anoAtual = date.getFullYear()
+            let mesAtual = date.getMonth()+1
+            let diaAtual = date.getDate()
+            console.log(mesAtual);
+            let idade = 2022 - anoNascimento;
+    
+            if (mesAtual < mesNascimento) {
+                idade--
+            } else if (mesAtual == mesNascimento && diaAtual < diaNascimento) {
+                idade--
+            }
+            document.getElementById("result").innerHTML = `A idade de ${nome} é ${idade} anos`
+        }
+    </script>
+</body>
+</html>

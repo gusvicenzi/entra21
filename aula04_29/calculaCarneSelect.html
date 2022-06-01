@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de churrasco</title>
+</head>
+<body>
+    <h1>Calculadora de churrasco</h1>
+    <fieldset>
+        <legend>Entrada de dados</legend>
+        <label for="qtdDePessoas">Quantidade de pessoas</label>
+        <input type="number" name="qtdDePessoas" id="qtdDePessoas" min="0" autofocus>
+        <br><br>
+
+        <label for="produto">Selecionar o produto</label>
+        <select id="produto" name="produto">
+            <optgroup label="Comida">
+                <option value="carne">Carne R$45,99 /kg</option>
+                <option value="paoDeAlho">Pão de alho R$35 /kg</option>
+                <option value="linguicaPorco">Linguiça de porco</option>
+                <option value="linguicaFrango">Linguiça de frango</option>
+            </optgroup>
+            <optgroup label="Bebidas">
+                <option value="cocaCola2L">Coca-Cola 2L R$6,99</option>
+                <option value="Heineken">Heineken long neck R$12</option>
+            </optgroup>
+        </select>
+        <br><br>
+        <label for="qtdPorPessoa">Quantidade por pessoa</label>
+        <input type="number" name="qtdPorPessoa" id="qtdPorPessoa" step=".1">
+        <br><br>
+        <button onclick="adicionaProdutoCarrinho(produto.value, qtdPorPessoa.value, qtdDePessoas.value)">Adicionar produto</button>
+        <br><br>
+        <h2>Carrinho de compras</h2>
+        <table>
+            <thead>
+                <th>Produto</th>
+                <th>Qtd</th>
+                <th>Valor unitário</th>
+                <th>Qtd pessoas</th>
+                <th>Valor total</th>
+            </thead>
+            <tbody id="listaItens">
+            </tbody>
+        </table>
+        <br>
+        <h2>Total</h2>
+        
+        <label for="resPreco">Valor total (R$)</label>
+        <input type="text" name="resPreco" id="resPreco" readonly>
+        <br><br>
+        <p id="valorExtraAssador" name="valorExtraAssador"></p>
+    </fieldset>
+    <script>
+        let carrinho = {
+            carne: {
+                qtd: 0,
+                valorUnitario: 45.99
+            },
+            paoDeAlho: {
+                qtd: 0,
+                valorUnitario: 35
+            }
+        }
+        function adicionaProdutoCarrinho(produto, qtdPorPessoa, qtdDePessoas) {
+            carrinho[produto].qtd = parseFloat(qtdPorPessoa);
+            valorTotalDoProduto = carrinho[produto].valorUnitario * qtdPorPessoa * qtdDePessoas
+            document.getElementById("listaItens").innerHTML += `<tr>
+                    <td>${produto}</td>
+                    <td>${qtdPorPessoa}</td>
+                    <td>${carrinho[produto].valorUnitario}</td>
+                    <td>${qtdDePessoas}</td>
+                    <td>${valorTotalDoProduto.toFixed(2)}</td>
+                </tr>`
+            let total = 0
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        fieldset {
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            height: 200px;
+            justify-content: space-around;
+        }
+
+        #display {
+            margin: 1rem auto;
+            color: red;
+            font-size: 40px;
+            font-weight: bold;
+            width: 400px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Qual seu signo?</legend>
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome">
+        <label for="nome">Data de nascimento:</label>
+        <input type="date" name="dataNasc" id="dataNasc">
+        <button onclick="signo(nome, dataNasc, display)">Ver signo</button>
+    </fieldset>
+
+    <section id="display">
+
+    </section>
+
+    <script>
+        function signo(nome, dataNasc, display) {
+
+            if (!nome.value) {
+                alert("Digite seu nome")
+                nome.focus()
+                return
+            } else if (!dataNasc) {
+                alert("Digite sua data de nascimento")
+                dataNasc.focus()
+                return
+            }
+
+            const nasc = new Date(dataNasc.value)
+            const dia = nasc.getUTCDate()
+            const mes = nasc.getMonth() + 1
+            let seuSigno = ''
+
+            if (mes == 3 && dia >= 21 || mes == 4 && dia <= 20) {
+                seuSigno = `Áries`
+            } else if (mes == 4 && dia >= 21 || mes == 5 && dia <= 20) {
+                seuSigno = `Touro`
+            } else if (mes == 5 && dia >= 21 || mes == 6 && dia <= 20) {
+                seuSigno = `Gêmeos`
+            } else if (mes == 6 && dia >= 21 || mes == 7 && dia <= 22) {
+                seuSigno = `Câncer`
+            } else if (mes == 7 && dia >= 23 || mes == 8 && dia <= 22) {
+                seuSigno = `Leão`
+            } else if (mes == 8 && dia >= 23 || mes == 9 && dia <= 22) {
+                seuSigno = `Virgem`
+            } else if (mes == 9 && dia >= 23 || mes == 10 && dia <= 22) {
+                seuSigno = `Libra`
+            } else if (mes == 10 && dia >= 23 || mes == 11 && dia <= 21) {
+                seuSigno = `Escorpião`
+            } else if (mes == 11 && dia >= 22 || mes == 12 && dia <= 21) {
+                seuSigno = `Sagitário`
+            } else if (mes == 12 && dia >= 22 || mes == 1 && dia <= 20) {
+                seuSigno = `Capricórnio`
+            } else if (mes == 1 && dia >= 21 || mes == 2 && dia <= 18) {
+                seuSigno = `Aquário`
+            } else if (mes == 2 && dia >= 19 || mes == 3 && dia <= 20) {
+                seuSigno = `Peixes`
+            } else {
+                seuSigno = `Deu ruim`
+            }
+            display.innerHTML = `O signo de ${nome.value} é ${seuSigno}`
+        }
+    </script>
+</body>
+
+</html>

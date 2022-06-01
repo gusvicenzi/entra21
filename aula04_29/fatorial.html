@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora de fatorial</h1>
+    <label for="numero">Digite um número</label>
+    <input type="number" name="numero" id="numero" placeholder="Digite um número">
+    <button onclick="calculaFatorial(numero.value)" >Calcular fatorial</button>
+    <h2 id="resultado"></h2>
+    <script>
+        function calculaFatorial(numero) {
+            // let resultado = 1
+            // for (let fat = 1; fat<=numero; fat++) {
+            //     resultado = resultado * fat
+            // }
+            let resultado = numero
+            for (let fat = numero-1; fat>1; fat--) {
+                // console.log(`${resultado} x ${fat} = `);
+                resultado = resultado * fat
+                // console.log(resultado);
+            }
+            document.getElementById("resultado").innerHTML = `O fatorial de ${numero} é ${resultado}`
+        }
+    </script>
+</body>
+</html>

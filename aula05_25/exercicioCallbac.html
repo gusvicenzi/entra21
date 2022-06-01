@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício Callback</title>
+</head>
+<body>
+    <label for="fruta">Digite uma fruta</label>
+    <input type="text" name="fruta" id="fruta" placeholder="Digite uma fruta">
+    <button onclick="add(fruta, display, lista.checked ? mostrarEmLista : mostrarEmParagrafo)">Inserir</button>
+    <br>
+    <label for="lista">Mostrar em lista:</label>
+    <input type="radio" name="mostrador" id="lista" value='true' checked>
+    <label for="paragrafo">Mostrar em parágrafo:</label>
+    <input type="radio" name="mostrador" id="paragrafo" value='false' >
+
+    <!-- <label for="lista">Mostrar em lista:</label>
+    <input type="checkbox" name="mostradorLista" id="lista" value='true' >
+    <label for="paragrafo">Mostrar em parágrafo:</label>
+    <input type="checkbox" name="Paragrafo" id="paragrafo" value='false' > -->
+
+    <!-- <label for="mostradorParagrafo">Mostrar em parágrafo</label>
+    <input type="radio" name="mostrador" id="mostradorParagrafo"> -->
+    <!-- <button onclick="mostrarEmLista(frutas, dados)">Mostrar</button> -->
+    <hr>
+    <div id="display">
+
+    </div>
+
+    <script>
+        let frutas = ['Maça', 'Pêra', 'Banana']
+
+        function add(item, display, mostrador){
+            if (!item.value) {
+                alert("Informe uma fruta")
+                item.focus()
+                return
+            }
+            frutas.push(item.value)
+            item.value = ''
+            item.focus()
+            mostrador(frutas, display)
+        }
+
+        function mostrarEmLista(array, display) {
+            let linha = '<ol>'
+            display.innerHTML = ""
+            for (item of array) {
+                linha += `<li>${item}</li>`
+            }
+            linha += '</ol>'
+            display.innerHTML = linha
+        }
+
+        function mostrarEmParagrafo(array, display) {
+            display.innerHTML = ""
+            for (item of array) {
+                display.innerHTML += `<p>${item}</p>`
+            }
+        }
+
+    </script>
+</body>
+</html>

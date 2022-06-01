@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="history.back()">Voltar</button>
+
+    <script>
+        // String:
+        let stringCarro = localStorage.getItem('carro')
+        console.log(stringCarro);
+
+        // objeto:
+        const carro = JSON.parse(stringCarro)
+        console.log(carro);
+        console.log(carro.marca);
+
+        // String:
+        let stringVenda = localStorage.getItem('venda')
+        console.log(stringVenda);
+        let venda = JSON.parse(localStorage.getItem('venda'))
+        console.log(venda.itens);
+        venda.itens.push({
+                    id: 12,
+                    descricao: 'Arroz',
+                    preco: 2.99,
+                    quantidade: 25
+                })
+    </script>
+</body>
+</html>

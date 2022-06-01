@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./jurosCompostos.css">
+  <title>Calculadora de empréstimo</title>
+</head>
+
+<body>
+  <fieldset>
+    <legend>Entrada de dados</legend>
+    <label for="compostos">Juros compostos</label>
+    <input onclick="verificar(compostos.checked)" type="checkbox" name="compostos" id="compostos">
+    <br><br>
+    <label for="emprestimo">Valor do empréstimo:</label>
+    <input type="number" name="emprestimo" id="emprestimo" size="15" autofocus>
+    <br><br>
+    <label for="taxa">Taxa de juros (a.m.):</label>
+    <input type="number" name="taxa" id="taxa" size="15">
+    <br><br>
+    <label for="nParcelas">Número de parcelas:</label>
+    <input type="number" name="nParcelas" id="nParcelas" size="15">
+    <br><br>
+    <button onclick="calcular(emprestimo.value, taxa.value, nParcelas.value, compostos.checked)">Calcular</button>
+    <hr>
+    <p id="montante"></p>
+    <p id="juros"></p>
+    <div id="parcelas"></div>
+  </fieldset>
+  <script>
+    function calcular(emprestimo, taxa, nParcelas, compostos) {
+      if (!emprestimo) {
+        alert('Informe valor do empréstimo');
+        document.getElementById('emprestimo').focus();
+        return;
+      }
+      if (!taxa) {
+        alert('Informe valor da taxa');
+        document.getElementById('taxa').focus();
+        return;
+      }
+      if (!nParcelas) {
+        alert('Informe o número de parcelas');
+        document.getElementById('nParcelas').focus();
+        return;
+      }
+      if (compostos) {
+        jurosCompostos(emprestimo, taxa, nParcelas, compostos);
+      } else {
+        jurosSimples(emprestimo, taxa, nParcelas, compostos);
+      }
+    }
+
+    function jurosSimples(emprestimo, taxa, nParcelas) {
+      emprestimo = parseFloat(emprestimo);
+      taxa = parseFloat(taxa);
+      nParcelas = parseFloat(nParcelas);
+      let montante, juros;
+      let parcelas = [];
+      juros = emprestimo * (taxa / 100) * nParcelas;
+      montante = emprestimo + juros;
+      document.getElementById(
+        'montante'
+      ).innerHTML = `O valor total do empréstimo é: R$${montante}`;
+      document.getElementById(
+        'juros'
+      ).innerHTML = `O valor total dos juros é: R$${juros}`;
+      document.getElementById('parcelas').innerHTML = ``;
+      for (let i = 0; i < nParcelas; i++) {
+        parcelas[i] = (emprestimo / nParcelas) * (1 + (nParcelas * taxa) / 100);
+        document.getElementById('parcelas').innerHTML += `<p>Parcela ${
+        i + 1
+      }: R$${parcelas[i].toFixed(2)}</p>`;
+      }
+    }
+
+    function jurosCompostos(emprestimo, taxa, nParcelas) {
+      emprestimo = parseFloat(emprestimo);
+      taxa = parseFloat(taxa) / 100;
+      nParcelas = parseFloat(nParcelas);
+      let montante = emprestimo * (1 + taxa) ** nParcelas;
+      let juros = montante - emprestimo;
+      let entrada = 0;
+      let v = emprestimo - entrada;
+      let parcelas =
+        (v * taxa * (1 + taxa) ** nParcelas) / ((1 + taxa) ** nParcelas - 1);
+      document.getElementById('parcelas').innerHTML = ``;
+      document.getElementById(
+        'montante'
+      ).innerHTML = `O valor total do empréstimo é: R$${montante.toFixed(2)}`;
+      document.getElementById(
+        'juros'
+      ).innerHTML = `O valor total dos juros é: R$${juros.toFixed(2)}`;
+
+      for (let i = 0; i < nParcelas; i++) {
+        document.getElementById('parcelas').innerHTML += `<p>Parcela ${
+        i + 1
+      }: R$${parcelas.toFixed(2)}</p>`;
+      }
+    }
+
+    // function verificar(compostos) {
+    //   if (compostos) {
+    //     alert('Juros compostos');
+    //   } else {
+    //     alert('Juros simples');
+    //   }
+    // }
+  </script>
+</body>
+
+</html>

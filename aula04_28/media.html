@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Calcular média</legend>
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" autofocus autocomplete="name" required>
+        <br><br>
+        <label for="n1">Nota 1</label>
+        <input type="number" name="n1" id="n1" step="0.5" min="0" max="10" required>
+        <br><br>
+        <label for="n2">Nota 2</label>
+        <input type="number" name="n2" id="n2" step="0.5" min="0" max="10" required>
+        <br><br>
+        <label for="n3">Nota 3</label>
+        <input type="number" name="n3" id="n3" step="0.5" min="0" max="10" required>
+        <br><br>
+        <button onclick=calcMean(nome.value,n1.value,n2.value,n3.value)>Calcular média</button>
+        <h1 id="result"></h1>
+    </fieldset>
+    <script>
+        function calcMean(nome, n1, n2, n3) {
+            let notas = [parseFloat(n1), parseFloat(n2), parseFloat(n3)]
+            let somaNotas = 0
+            let situacao2 = "aprovado"
+            let podeImprimir = true
+            // Verifica se o input está vazio
+            if (nome == "") {
+                alert("Digite um nome")
+                podeImprimir = false
+                document.getElementById("nome").focus()
+            } else if (n1 == "") {
+                alert("Digite a nota 1")
+                podeImprimir = false
+                document.getElementById("n1").focus()
+            } else if (n2 == ""){
+                alert("Digite a nota 2")
+                podeImprimir = false
+                document.getElementById("n2").focus()
+            } else if (n3 == ""){
+                alert("Digite a nota 3")
+                podeImprimir = false
+                document.getElementById("n3").focus()
+            } else if (n1<0 || n1>10) { // Verifica limites notas entre 0 e 10
+                alert("Digite nota 1 entre 0 e 10")
+                podeImprimir = false
+                document.getElementById("n1").focus()
+            } else if (n2<0 || n2>10){
+                alert("Digite nota 2 entre 0 e 10")
+                podeImprimir = false
+                document.getElementById("n2").focus()
+            } else if (n3<0 || n3>10){
+                alert("Digite nota 3 entre 0 e 10")
+                podeImprimir = false
+                document.getElementById("n3").focus()
+            }
+
+            if (podeImprimir) {
+                for (let i = 0; i < notas.length; i++) {
+                    somaNotas = somaNotas + notas[i]
+                }
+                let mediaNotas = somaNotas / notas.length
+
+                if (mediaNotas < 7) {
+                    situacao2 = "reprovado"
+                }
+                document.getElementById("result").innerHTML = `${nome}, sua média é ${mediaNotas.toFixed(2)}. Você está ${situacao2}`
+            }
+        }
+    </script>
+</body>
+
+</html>

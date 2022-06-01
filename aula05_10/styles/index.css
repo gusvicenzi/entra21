@@ -1,0 +1,122 @@
+* {
+    padding: 0;
+    margin: 0;
+    border-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightgray;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    display: flex;
+    background-color: black;
+}
+
+header h1 {
+    color: white;
+    height: 3rem;
+}
+
+nav {
+    position: absolute;
+    left:0;
+    right:0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20rem;
+
+    display: flex;
+    justify-content: center;
+    /* align-items: top; */
+    /* background-color: red; */
+    
+}
+
+.nav-title {
+    font-family: Verdana;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 3rem;
+}
+
+/* .nav-cadastro {
+    background-color: brown;
+}
+
+.nav-consulta {
+    background-color: aqua;
+} */
+
+.dropdown-cadastro, .dropdown-consulta {
+    display: none;
+    width: 3rem;
+    width: 10rem;
+    text-align: center;
+
+    background-color: black;
+
+    color: crimson;
+    font-family: Tahoma;
+    font-weight: bold;
+    position: absolute;
+}
+
+.dropdown-cadastro li, .dropdown-consulta li {
+    padding: 1rem;
+}
+
+
+.nav-cadastro:hover .dropdown-cadastro {  
+    display: block;
+
+}
+
+.nav-consulta:hover .dropdown-consulta {
+    display: block;
+
+
+}
+
+.content {
+    max-width: 1050px;
+    padding: 3rem 0rem 3rem 1rem;
+    display: flex;
+    margin: auto;
+    background-color: gray;
+}
+
+main {
+    padding: 0 1.5rem;
+    width: 75%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+main h1 {
+    margin-bottom: 1rem;
+}
+
+aside {
+    background-color: white;
+    width: 25%;
+    padding: 1rem 2rem;
+    text-align: right;
+}
+
+aside h2 {
+    margin-bottom: 1rem;
+}
+

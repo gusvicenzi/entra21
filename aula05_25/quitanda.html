@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quitanda</title>
+    <style>
+        .container {
+            width: 500px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button,
+        label {
+            margin-top: 1rem;
+        }
+
+        hr {
+            width: 100%;
+        }
+
+        .paragrafo {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .paragrafo > fieldset {
+            min-width: 120px;
+            max-width: 250px;
+            flex-grow: 1;
+            background-color: #999;
+            border: solid 2px black;
+            border-radius: 5px;
+            margin: .5rem;
+        }
+
+        #dados {
+            margin-top: 1rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label for="descricao">Descrição</label>
+        <input type="text" name="descricao" id="descricao" placeholder="Informe descrição do produto" autofocus />
+
+        <label for="preco">Preço</label>
+        <input type="number" name="preco" id="preco" placeholder="Informe preço do produto" />
+
+        <label for="estoque">Estoque</label>
+        <input type="number" name="estoque" id="estoque" placeholder="Informe estoque do produto" />
+
+        <hr>
+        <div class="radio">
+            <div class="radioItem">
+                <label for="lista">Mostrar em lista:</label>
+                <input type="radio" name="mostrador" id="lista" value='true' onchange="lista.checked ? mostrarEmLista(produtos,dados) : mostrarEmParagrafo(produtos,dados)" checked>
+            </div>
+            <div class="radioItem">
+                <label for="paragrafo">Mostrar em parágrafo:</label>
+                <input type="radio" name="mostrador" id="paragrafo" value='false' onchange="lista.checked ? mostrarEmLista(produtos,dados) : mostrarEmParagrafo(produtos,dados)">
+            </div>
+        </div>
+        <hr>
+        <div>
+            <button
+                onclick="add(descricao, preco, estoque, lista.checked ? mostrarEmLista : mostrarEmParagrafo, dados)">Salvar</button>
+
+            <button onclick="reset(descricao, preco, estoque)">Limpar</button>
+
+            <button onclick="insertTable(produtos, dados)">Mostrar em tabela</button>
+            <!-- <button onclick="lista.checked ? mostrarEmLista(produtos, dados) : mostrarEmParagrafo(produtos, dados)">Mostrar dados em lista</button> -->
+        </div>
+
+        <div id="dados">
+
+        </div>
+    </div>
+
+    <script>
+        let obj1 = {
+            descricao: 'Milho',
+            preco: 5.99,
+            estoque: 3,
+        }
+        let obj2 = {
+            descricao: 'Banana',
+            preco: 1.99,
+            estoque: 6,
+        }
+
+        let produtos = [obj1, obj2]
+
+        function add(descricao, preco, estoque, mostrador, display) {
+            if (!descricao.value) {
+                alert("Digite uma descrição")
+                descricao.focus()
+                return
+            } else if (!preco.value) {
+                alert("Digite um preço")
+                preco.focus()
+                return
+            } else if (!estoque.value) {
+                alert("Digite um estoque")
+                estoque.focus()
+                return
+            }
+
+            let obj = {
+                descricao: descricao.value.charAt(0).toUpperCase() + descricao.value.slice(1).toLowerCase(),
+                preco: preco.value,
+                estoque: estoque.value,
+            }
+
+            // limpar inputs
+            reset(descricao, preco, estoque)
+
+            // colocar objeto no array produtos
+            produtos.push(obj)
+            console.log(produtos);
+
+            // insere tabela
+            mostrador(produtos, display)
+            // insertTable(produtos)
+        }
+
+        function reset(descricao, preco, estoque) {
+            descricao.value = ""
+            preco.value = null
+            estoque.value = null
+        }
+
+        function insertTable(array, display) {
+            let linha = `<table>
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                </tr>
+                </thead>
+            <tbody id="dados">`
+            for (item of array) {
+                linha += `<tr>
+                        <td>${item.descricao}</td>
+                        <td>R$${item.preco}</td>
+                        <td>${item.estoque}</td>
+                    </tr>`
+            }
+            linha += '</tbody></table>'
+            display.innerHTML = linha
+        }
+
+        function mostrarEmLista(array, display) {
+            let linha = '<ol>'
+            for (item of array) {
+                linha += `<li><ul>`
+                linha += `<li>${item.descricao}</li>`
+                linha += `<li>R$${item.preco}</li>`
+                linha += `<li>Estoque: ${item.estoque}</li>`
+                linha += `</li></ul>`
+            }
+            linha += '</ol>'
+            display.innerHTML = linha
+        }
+
+        function mostrarEmParagrafo(array, display) {
+            let linha = '<div class="paragrafo">'
+            for (item of array) {
+                linha += '<fieldset>'
+                linha += `<p>${item.descricao}</p>`
+                linha += `<p>R$${item.preco}</p>`
+                linha += `<p>Estoque: ${item.estoque}</p>`
+                linha += '</fieldset>'
+            }
+            linha += '</div>'
+            display.innerHTML = linha
+        }
+    </script>
+</body>
+
+</html>

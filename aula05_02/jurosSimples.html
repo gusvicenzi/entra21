@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de empréstimo</title>
+</head>
+<body>
+    <fieldset style="width: 20rem; border-radius: 10px; ">
+        <legend>Entrada de dados</legend>
+        <label for="emprestimo">Valor do empréstimo:</label>
+        <input type="number" name="emprestimo" id="emprestimo" size="15" autofocus>
+        <br><br>
+        <label for="taxa">Taxa de juros (a.m.):</label>
+        <input type="number" name="taxa" id="taxa" size="15">
+        <br><br>
+        <label for="nParcelas">Número de parcelas:</label>
+        <input type="number" name="nParcelas" id="nParcelas" size="15">
+        <br><br>
+        <button onclick="jurosSimples(emprestimo.value, taxa.value, nParcelas.value)">Calcular</button>
+        <hr>
+        <p id="montante"></p>
+        <p id="juros"></p>
+        <div id="parcelas"></div>
+    </fieldset>
+    <script>
+        function jurosSimples(emprestimo, taxa, nParcelas){
+            if (!emprestimo) {
+                alert("Informe valor do empréstimo")
+                document.getElementById("emprestimo").focus()
+                return
+            }
+            if (!taxa) {
+                alert("Informe valor da taxa")
+                document.getElementById("taxa").focus()
+                return
+            }
+            if (!nParcelas) {
+                alert("Informe o número de parcelas")
+                document.getElementById("nParcelas").focus()
+                return
+            }
+            emprestimo = parseFloat(emprestimo)
+            taxa = parseFloat(taxa)
+            nParcelas = parseFloat(nParcelas)
+            let montante, juros
+            let parcelas = []
+            juros = emprestimo*(taxa/100)*nParcelas
+            montante = emprestimo + juros
+            document.getElementById("montante").innerHTML = `O valor total do empréstimo é: R$${montante}`
+            document.getElementById("juros").innerHTML = `O valor total dos juros é: R$${juros}`
+            document.getElementById("parcelas").innerHTML = ``
+            for(let i = 0; i < nParcelas; i++) {
+                parcelas[i] = (emprestimo/nParcelas)*(1+(nParcelas*taxa/(100)))
+                document.getElementById("parcelas").innerHTML += `<p>Parcela ${i+1}: R$${parcelas[i].toFixed(2)}</p>`
+            }
+        }
+    </script>
+</body>
+</html>

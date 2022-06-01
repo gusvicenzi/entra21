@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.profile-img {
+    height: 10rem;
+    width: 10rem;
+    margin: auto;
+    border-radius: 100px;
+}
+
+input {
+    width: 250px;
+    padding: 0.2rem 0;
+    background: #E8F9FD;
+    border-style: none;
+    border-radius: 5px;
+    margin: 0.5rem auto;
+}
+
+input[type=text] {
+    text-align: center;
+    color: #0AA1DD;
+  }
+
+input[type=color] {
+    width: 50px;
+}
+
+label {
+    font-family: "Verdana", sans-serif;
+    color: #0AA1DD;
+}
+
+.titulo {
+    font-family: "Geneva";
+    color: #2155CD;
+}
+
+.container {
+    background: #E8F9FD;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-container {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    background: #79DAE8;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin: auto;
+    align-items: center;
+    margin: 1rem auto;
+    box-sizing: border-box;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+    width: 30rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: #79DAE8;
+    box-sizing: border-box;
+}
+
+button {
+    background: #2155CD;
+    color: #E8F9FD;
+    font-family: "Helvetica", sans-serif;
+    font-weight: bold;
+    font-size: large;
+    border-style: none;
+    width: 10rem;
+    height: 2rem;
+    border-radius: 100px;
+}
+
+button:hover {
+    filter: brightness(1.2);
+}
+
+::placeholder {
+    text-align: center;
+}

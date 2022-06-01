@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button onclick="window.location.href='stringParaObjeto.html'">Avançar</button>
+    <script>
+
+        // Objeto:
+        const carro = {
+            marca: "Ford",
+            modelo: "Ka",
+            ano: 2020,
+            cor: "vermelho",
+        }
+        console.log(carro);
+
+        // String:
+        let stringCarro = JSON.stringify(carro)
+        console.log(stringCarro);
+
+        localStorage.setItem('carro', stringCarro)
+
+        // Objeto:
+        let venda = {
+            data: Date.now(),
+            cliente: {
+                id: 1,
+                nome: 'José',
+                endereco: 'Pomerode'
+            },
+            itens: [
+                {
+                    id: 10,
+                    descricao: 'Milho',
+                    preco: 10,
+                    quantidade: 20
+                },
+                {
+                    id: 11,
+                    descricao: 'Soja',
+                    preco: 45.99,
+                    quantidade: 12
+                },
+            ]
+        }
+
+        console.log(venda);
+
+        // String:
+        let stringVenda = JSON.stringify(venda);
+        console.log(stringVenda);
+        localStorage.setItem('venda', stringVenda)
+    </script>
+</body>
+
+</html>

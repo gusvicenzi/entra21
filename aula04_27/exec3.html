@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Calcular aumento</legend>
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" autofocus autocomplete="name" required>
+        <br>
+        <br>
+        <label for="n1">Nota 1</label>
+        <input type="number" name="n1" id="n1" required>
+        <br>
+        <br>
+        <label for="n2">Nota 2</label>
+        <input type="number" name="n2" id="n2" required>
+        <br>
+        <br>
+        <label for="n3">Nota 3</label>
+        <input type="number" name="n3" id="n3" required>
+        <br>
+        <br>
+        <button onclick=calcMean()>Enviar dados</button>
+        <h1 id="result"></h1>
+    </fieldset>
+    <script>
+        function calcMean(){
+            let notas = [parseInt(document.getElementById("n1").value), parseInt(document.getElementById("n2").value), parseInt(document.getElementById("n3").value)]
+            let somaNotas = 0
+            let situacao2 = "aprovado"
+            let nome = document.getElementById("name").value
+
+            for(let i = 0; i < notas.length; i++){
+                somaNotas = somaNotas + notas[i] 
+            }
+            let mediaNotas = somaNotas/notas.length
+
+            if (mediaNotas < 7) {
+                situacao2 = "reprovado"
+            }
+            document.getElementById("result").innerHTML = `${nome}, sua média é ${mediaNotas.toFixed(2)}. Você está ${situacao2}`
+        }
+    </script>
+</body>
+</html>

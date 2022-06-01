@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage</title>
+</head>
+<body>
+    <div class="login">
+        <input type="email" name="email" id="email" placeholder="Informe e-mail">
+        <input type="password" name="password" id="password" placeholder="Informe sua senha">
+    </div>
+    <button onclick="gravarStorage(email, password)">Login</button>
+    <button onclick="lerStorage()">Ler item</button>
+
+
+    <script>
+        function gravarStorage(email, password){
+            localStorage.setItem(`${email.id}`, `${email.value}`)
+            localStorage.setItem(`${password.id}`, `${password.value}`)
+        }
+        function lerStorage(){
+            console.log(localStorage.getItem("email"));
+            console.log(localStorage.getItem("password"));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
+            width: 30rem;
+            height: 10rem;
+            padding: 1rem;
+
+            background-color: aquamarine;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section > h1, section > label {
+            color: blueviolet;
+        }
+
+        button {
+            font-weight: bold;
+            color: white;
+            background-color: blueviolet;
+            border-style: none;
+            padding: .35rem;
+            border-radius: 10px;transition: all .5s ease;
+        }
+
+        button:hover {
+            filter: brightness(1.3);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Cadastrar frutas</h1>
+        <label for="fruta">Inserir frutas:</label>
+        <input type="text" name="fruta" id="fruta" placeholder="Insira uma fruta">
+        <button onclick="inserirFruta(fruta)">Inserir</button>
+        <button onclick="apagarTudo()">Apagar tudo</button>
+    </section>
+
+    <script>
+        // inicia vetor de frutas com o que tiver no localStorage ou vazio se o localStorage estiver vazio
+        let frutas = localStorage.getItem('frutas') != null ? localStorage.getItem('frutas').split(',') : []
+
+        // if (localStorage.getItem('frutas') != null) {
+        //     var frutas = localStorage.getItem('frutas').split(',')
+        // } else {
+        //     var frutas = []
+        // }
+
+        function inserirFruta(fruta) {
+            if (!fruta.value){
+                alert('Digite uma fruta')
+                return
+            }
+            frutas.push(fruta.value)
+            localStorage.setItem("frutas", frutas)
+            fruta.value = ""
+            fruta.focus()
+            // window.location.href = 'pagina2.html'
+        }
+
+        function apagarTudo() {
+            localStorage.removeItem('frutas')
+        }
+    </script>
+
+</body>
+</html>

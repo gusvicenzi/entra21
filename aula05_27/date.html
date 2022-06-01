@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dados {
+            font-size: 20px;
+            font-weight: bold;
+            background-color: blueviolet;
+            width: 100px;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dados">
+    </div>
+    <div id="datanascimento">
+    </div>
+    <script>
+        function time() {
+            let d = new Date()
+            // let datanasc = new Date(98, 04, 12)
+            let datanasc = new Date("May 11, 1998 16:45:00")
+            document.getElementById('dados').innerHTML = d.toLocaleString()
+            document.getElementById('datanascimento').innerHTML = datanasc.toLocaleString()
+            // document.getElementById('datanascimento').innerHTML += Date.UTC(1998,04,12)
+        }
+        setInterval(time, 1000)
+    </script>
+</body>
+
+</html>

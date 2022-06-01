@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Ler dados input</p>
+    <input type="text" name="nome" id="nome" placeholder="Nome" autofocus>
+    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
+    <br>
+    <br>
+    <button onclick="transfereNome(nome.value, sobrenome.value, recebenome.name)">Enviar</button>
+    <br>
+    <label for="recebenome">Nome completo:</label>
+    <input type="text" name="recebenome" id="recebenome" readonly>
+    <script>
+        function transfereNome(nome, sobrenome, recebenome){
+            // let nome = document.getElementById("nome").value;
+            // let sobrenome = document.getElementById("sobrenome").value;
+            if (nome == ""){
+                alert("Digite um nome");
+            }
+            if (sobrenome == "Digite um sobrenome")
+            document.getElementById(recebenome).value = `${nome} ${sobrenome}`;
+        }
+    </script>
+</body>
+</html>

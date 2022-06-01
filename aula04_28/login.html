@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset style="width: 20rem;">
+        <legend>Login</legend>
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" size="30">
+        <br>
+        <br>
+        <label for="password">Senha</label>
+        <input type="password" name="password" id="password" size="30">
+        <br>
+        <br>
+        <button onclick="login()">Login</button>
+    </fieldset>
+    <script>
+        function login(){
+            let email = document.getElementById("email").value
+            let password = document.getElementById("password").value
+            console.log(`e-mail: ${email}, senha: ${password} `);
+        }
+    </script>
+</body>
+</html>

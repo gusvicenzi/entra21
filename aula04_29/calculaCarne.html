@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de churrasco</title>
+</head>
+<body>
+    <h1>Calculadora de churrasco</h1>
+    <fieldset>
+        <legend>Entrada de dados</legend>
+        <label for="qtdPessoas">Quantidade de pessoas</label>
+        <input type="number" name="qtdPessoas" id="qtdPessoas" min="0" autofocus>
+        <br><br>
+        <label for="gramasPorPessoa">Quantidade por pessoa (g)</label>
+        <input type="number" name="gramasPorPessoa" id="gramasPorPessoa" step="50">
+        <br><br>
+        <label for="descricaoItem">Descrição do item</label>
+        <input type="text" name="descricaoItem" id="descricaoItem">
+        <br><br>
+        <label for="precoPorQuilo">Preço por quilo (R$/kg)</label>
+        <input type="number" name="precoPorQuilo" id="precoPorQuilo" min="0">
+        <br><br>
+        <button onclick="calculaChurrasco(qtdPessoas,gramasPorPessoa,descricaoItem,precoPorQuilo,resQuiloCarne,resPreco)">Calcular</button>
+        <hr>
+        <h2>Resultados</h2>
+        <label for="resQuiloCarne" id="labelResQuiloCarne">Quantidade de carne (gramas)</label>
+        <input type="text" name="resQuiloCarne" id="resQuiloCarne" readonly>
+        <br><br>
+        <label for="resPreco">Valor total (R$)</label>
+        <input type="text" name="resPreco" id="resPreco" readonly>
+        <br><br>
+        <p id="valorExtraAssador" name="valorExtraAssador"></p>
+    </fieldset>
+    <script>
+        function calculaChurrasco(qtdPessoas, gramasPorPessoa, descricaoItem, precoPorQuilo, resQuiloCarne, resPreco, valorExtraAssador){
+            let qtdCarne, valorTotal, valorExtra = null
+            let podeImprimir = true
+            let taxaExtra = 10
+            // verifica se campos estão vazios
+            if (qtdPessoas.value == "" || qtdPessoas.value < 0) {
+                alert("Digite uma quantidade válida de pessoas")
+                podeImprimir = false
+                document.getElementById(qtdPessoas.name).focus()
+            } else if (gramasPorPessoa.value == "" || gramasPorPessoa.value < 0) {
+                alert("Digite uma quantidade válida de gramas por pessoa")
+                podeImprimir = false
+                document.getElementById(gramasPorPessoa.name).focus()
+            } else if (descricaoItem.value == ""){
+                alert("Digite a descrição do item")
+                podeImprimir = false
+                document.getElementById(descricaoItem.name).focus()
+            } else if (precoPorQuilo.value == "" || precoPorQuilo.value < 0){
+                alert("Digite um preço válido por quilo")
+                podeImprimir = false
+                document.getElementById(precoPorQuilo.name).focus()
+            } 
+
+            if (podeImprimir){
+                qtdCarne = parseInt(qtdPessoas.value)*gramasPorPessoa.value;
+                valorTotal = qtdCarne*precoPorQuilo.value/1000;
+                if (qtdPessoas.value >= 10) {
+                    valorExtra = taxaExtra/100 * valorTotal
+                    valorTotal += valorExtra
+                    document.getElementById("valorExtraAssador").innerHTML = `Valor de R$${valorExtra} adicionado para
+                    pagar o assador`
+                } else {
+                    document.getElementById("valorExtraAssador").innerHTML = ""
+                }
+
+                if (qtdCarne >= 1000){
+                    qtdCarne = qtdCarne/1000
+                    document.getElementById("labelResQuiloCarne").innerHTML = "Quantidade de carne (kg)"
+                } else {
+                    document.getElementById("labelResQuiloCarne").innerHTML = "Quantidade de carne (g)"
+                }
+                document.getElementById(resQuiloCarne.name).value = qtdCarne
+                document.getElementById(resPreco.name).value = valorTotal.toFixed(2)
+            }
+        }
+    </script>
+</body>
+</html>
